@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpaceShooter">
         <activity
+            android:screenOrientation="behind"
             android:name=".GameActivity"
             android:exported="true" />
         <activity

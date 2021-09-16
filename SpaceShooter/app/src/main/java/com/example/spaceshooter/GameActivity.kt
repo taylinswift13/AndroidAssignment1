@@ -12,7 +12,7 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         game= Game(this)
         setContentView(game)
-        Log.d(tag,"onCreate caled")
+        Log.d(tag,"onCreate called")
     }
 
     override fun onPause() {

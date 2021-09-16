@@ -14,11 +14,10 @@ class Star: Entity() {
         y= RNG.nextInt(STAGE_HEIGHT).toFloat()
         width=radius*2f
         height=width
-        velX=-4f
     }
     override fun update() {
         super.update()
-        x+=velX
+        x-= playerSpeed
         if(right()<0){
             setLeft(STAGE_WIGTH.toFloat())
             setTop(RNG.nextInt(STAGE_HEIGHT-height.toInt()).toFloat())
