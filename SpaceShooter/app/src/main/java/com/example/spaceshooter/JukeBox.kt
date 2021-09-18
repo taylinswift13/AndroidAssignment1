@@ -9,11 +9,12 @@ import java.io.IOException
 
 object SFX{
     var crash = 0
+    var start = 0
+    var die =0
 }
 const val MAX_STREAMS = 3
-class Jukebox(assetManager: AssetManager) {
+class Jukebox(private val assetManager: AssetManager) {
     private val tag = "Jukebox"
-    private val assetManager = assetManager
     private val soundPool: SoundPool
     init {
         val attr = AudioAttributes.Builder()
@@ -26,6 +27,9 @@ class Jukebox(assetManager: AssetManager) {
             .build()
         Log.d(tag, "soundpool created!")
         SFX.crash = loadSound("crash.wav")
+        SFX.start =loadSound("start.wav")
+        SFX.die =loadSound("die.wav")
+
     }
 
     private fun loadSound(fileName: String): Int{
@@ -49,8 +53,4 @@ class Jukebox(assetManager: AssetManager) {
         }
     }
 
-    fun destroy() {
-        soundPool.release()
-        //the soundpool can no longer be used! you have to create a new soundpool.
-    }
 }

@@ -1,22 +1,20 @@
 package com.example.spaceshooter
 
 import android.content.res.Resources
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.support.v4.math.MathUtils.clamp
 import android.util.Log
 
-const val PLAYER_HEIGHT = 130
+const val PLAYER_HEIGHT = 100
 const val ACCELERATION=1.1f
-const val MIN_VEL=0.1f
-const val MAX_VEL=20f
-const val GRAVITY=1.1f
-const val LIFT=-(GRAVITY*2f)
+const val MIN_VEL=2f
+const val MAX_VEL=10f
+const val GRAVITY=1.5f
+const val LIFT=-(GRAVITY*2.5f)
 const val DRAG=0.97f
 const val PLAYER_STARTING_HEALTH = 3
 const val PLAYER_STARTING_POSITION = 10F
 class Player(res: Resources):BitmapEntity() {
-    private val TAG="Player"
+    private val tag="Player"
     var health= PLAYER_STARTING_HEALTH
     init {
         setSprite(loadBitmap(res, R.drawable.space_ship, PLAYER_HEIGHT))
@@ -29,7 +27,7 @@ class Player(res: Resources):BitmapEntity() {
     }
 
     override fun onCollision(that: Entity) {
-        Log.d(TAG,"onCollision")
+        Log.d(tag,"onCollision")
         health--
     }
 

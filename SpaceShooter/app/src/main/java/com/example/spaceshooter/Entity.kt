@@ -2,8 +2,8 @@ package com.example.spaceshooter
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.Log
-    abstract class Entity() {
-        private val TAG = "Entity"
+    abstract class Entity {
+        private val tag = "Entity"
         var x = 0f
         var y = 0f
         var width = 0f
@@ -12,7 +12,7 @@ import android.util.Log
         var velY = 0f
 
         init{
-            Log.d(TAG, "Entity created")
+            Log.d(tag, "Entity created")
         }
 
         open fun update() {}

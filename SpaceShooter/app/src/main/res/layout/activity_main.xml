@@ -34,7 +34,7 @@
         android:id="@+id/highscore"
         android:layout_width="200dp"
         android:layout_height="35dp"
-        android:text="Highscore:"
+        android:text="@string/highscore"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

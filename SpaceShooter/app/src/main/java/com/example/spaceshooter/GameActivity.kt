@@ -8,6 +8,7 @@ class GameActivity : AppCompatActivity() {
     private val tag="GameActivity"
     private lateinit var game:Game
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         game= Game(this)
         setContentView(game)

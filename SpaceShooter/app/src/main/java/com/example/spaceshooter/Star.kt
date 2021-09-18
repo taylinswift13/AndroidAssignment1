@@ -5,9 +5,9 @@ import android.graphics.Color
 import android.graphics.Paint
 
 class Star: Entity() {
-    private val TAG="Star"
-    private val color=Color.YELLOW
-    private val radius=(RNG.nextInt(6)+2).toFloat()
+    //private val TAG="Star"
+    private val color=Color.rgb(RNG.nextInt(255),RNG.nextInt(255),RNG.nextInt(255))
+    private val radius=(RNG.nextInt(8)+2).toFloat()
     init {
         respawn()
     }
@@ -20,14 +20,26 @@ class Star: Entity() {
 
     override fun update() {
         super.update()
-        x-= playerSpeed
+        if(radius<3){
+            x-= playerSpeed/1.5f
+        }
+        if (radius>=3) {
+            if (radius < 6) {
+                x-= playerSpeed/3
+            }
+        }
+        if(radius>=6 && radius<=10)
+        {
+            x-= playerSpeed/5
+        }
+
+
         if(right()<0){
             setLeft(STAGE_WIDTH.toFloat())
             setTop(RNG.nextInt(STAGE_HEIGHT-height.toInt()).toFloat())
         }
         if(top()> STAGE_HEIGHT)setBottom(0f)
     }
-
     override fun render(canvas: Canvas, paint: Paint) {
         super.render(canvas, paint)
         paint.color=color

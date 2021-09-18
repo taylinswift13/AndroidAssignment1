@@ -1,10 +1,8 @@
 package com.example.spaceshooter
 
 import android.content.res.Resources
-import android.graphics.Canvas
-import android.graphics.Paint
 
-const val ENEMY_HEIGHT=80
+const val ENEMY_HEIGHT=70
 const val ENEMY_SPAWN_OFFSET= STAGE_WIDTH*2
 class Enemy(res:Resources):BitmapEntity() {
     init {

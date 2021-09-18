@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SpaceShooter</string>
     <string name="start_game">Start Game!</string>
+    <string name="highscore">Highscore:</string>
 </resources>

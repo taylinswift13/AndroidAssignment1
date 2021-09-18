@@ -5,7 +5,9 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.os.Build
 import android.os.SystemClock.uptimeMillis
+import android.support.annotation.RequiresApi
 import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceHolder
@@ -15,8 +17,8 @@ import kotlin.random.Random
 
 const val STAGE_WIDTH=1080
 const val STAGE_HEIGHT=720
-const val STAR_COUNT=40
-const val ENEMY_COUNT=10
+const val STAR_COUNT=100
+const val ENEMY_COUNT=6
 val RNG= Random(uptimeMillis())
 @Volatile var isBoosting = false
 var playerSpeed = 0f
@@ -58,10 +60,12 @@ class Game(context: Context) : SurfaceView(context), Runnable ,SurfaceHolder.Cal
             distanceTraveled=0
             maxDistanceTraveled=prefs.getInt(LONGEST_DIST,0)
             isGameOver=false
+            jukebox.play(SFX.start)
             //play sound
             //update highscore
         }
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun run() {
         while (isRunning){
             update()
@@ -97,15 +101,17 @@ class Game(context: Context) : SurfaceView(context), Runnable ,SurfaceHolder.Cal
             if(distanceTraveled>maxDistanceTraveled){
                 editor.putInt(LONGEST_DIST,distanceTraveled)
                 editor.apply()
+                jukebox.play(SFX.die)
                 //update highScore
             }
         }
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun render() {
         val canvas = acquireAndLOckCanvas()?:return
-        canvas.drawColor(Color.BLUE)
+        canvas.drawColor(Color.rgb(25,25,112))
 
         for(entity in entities){
             entity.render(canvas, paint)
