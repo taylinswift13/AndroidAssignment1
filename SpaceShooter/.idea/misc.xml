@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/86189/AndroidStudioProjects/SpaceShooter/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/liyua/Documents/GitHub/AndroidAssignment1/SpaceShooter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/liyua/Documents/GitHub/AndroidAssignment1/SpaceShooter/app/src/main/res/layout/activity_main.xml" value="0.33" />
       </map>
     </option>
   </component>
@@ -13,5 +14,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.24791666666666667" />
+      </ProjectState>
+    </option>
   </component>
 </project>

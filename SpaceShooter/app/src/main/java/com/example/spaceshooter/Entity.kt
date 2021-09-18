@@ -19,6 +19,7 @@ import android.util.Log
         open fun render(canvas: Canvas, paint: Paint) {}
         open fun onCollision(that: Entity) {} //notify the Entity about collisions
         open fun destroy() {}
+        open fun respawn() {}
 
         fun left() = x
         fun right() = x + width

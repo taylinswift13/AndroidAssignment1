@@ -1,9 +1,8 @@
 package com.example.spaceshooter
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import kotlin.math.log
 
 class GameActivity : AppCompatActivity() {
     private val tag="GameActivity"

@@ -5,7 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 
 const val ENEMY_HEIGHT=80
-const val ENEMY_SPAWN_OFFSET= STAGE_WIGTH*2
+const val ENEMY_SPAWN_OFFSET= STAGE_WIDTH*2
 class Enemy(res:Resources):BitmapEntity() {
     init {
         val id = when(RNG.nextInt(1,6)){
@@ -18,9 +18,10 @@ class Enemy(res:Resources):BitmapEntity() {
         }
         val bmp= loadBitmap(res,id, ENEMY_HEIGHT)
         setSprite(flipVertically(bmp))
+        respawn()
     }
-    fun respawn(){
-        x=(STAGE_WIGTH+ RNG.nextInt(ENEMY_SPAWN_OFFSET)).toFloat()
+    override fun respawn(){
+        x=(STAGE_WIDTH+ RNG.nextInt(ENEMY_SPAWN_OFFSET)).toFloat()
         y= RNG.nextInt(STAGE_HEIGHT- ENEMY_HEIGHT).toFloat()
     }
     override fun update() {
@@ -32,7 +33,6 @@ class Enemy(res:Resources):BitmapEntity() {
     }
 
     override fun onCollision(that: Entity) {
-        
         respawn()
     }
 }

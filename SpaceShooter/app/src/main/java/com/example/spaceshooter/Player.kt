@@ -14,11 +14,18 @@ const val GRAVITY=1.1f
 const val LIFT=-(GRAVITY*2f)
 const val DRAG=0.97f
 const val PLAYER_STARTING_HEALTH = 3
+const val PLAYER_STARTING_POSITION = 10F
 class Player(res: Resources):BitmapEntity() {
     private val TAG="Player"
     var health= PLAYER_STARTING_HEALTH
     init {
         setSprite(loadBitmap(res, R.drawable.space_ship, PLAYER_HEIGHT))
+        respawn()
+    }
+
+    override fun respawn() {
+        health= PLAYER_STARTING_HEALTH
+        x= PLAYER_STARTING_POSITION
     }
 
     override fun onCollision(that: Entity) {
