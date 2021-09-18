@@ -28,7 +28,7 @@ class Star: Entity() {
                 x-= playerSpeed/3
             }
         }
-        if(radius>=6 && radius<=10)
+        if(radius in 6f..10f)
         {
             x-= playerSpeed/5
         }

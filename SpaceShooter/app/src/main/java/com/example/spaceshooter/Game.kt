@@ -38,11 +38,15 @@ class Game(context: Context) : SurfaceView(context), Runnable ,SurfaceHolder.Cal
     private val player= Player(resources)
     private val entities=ArrayList<Entity>()
     private val paint=Paint()
+    private val paintText by lazy {
+        val paint = Paint()
+        paint.color = Color.WHITE
+        paint
+    }
     private var distanceTraveled=0
     private var maxDistanceTraveled=0
 
     init{
-        resources
         holder.addCallback(this)
         holder.setFixedSize(STAGE_WIDTH, STAGE_HEIGHT)
         for(i in 0 until STAR_COUNT){
@@ -60,7 +64,6 @@ class Game(context: Context) : SurfaceView(context), Runnable ,SurfaceHolder.Cal
             distanceTraveled=0
             maxDistanceTraveled=prefs.getInt(LONGEST_DIST,0)
             isGameOver=false
-            jukebox.play(SFX.start)
             //play sound
             //update highscore
         }
@@ -79,7 +82,8 @@ class Game(context: Context) : SurfaceView(context), Runnable ,SurfaceHolder.Cal
         }
         distanceTraveled += playerSpeed.toInt()
         checkCollisions()
-        checkGameOver()
+        if(!isGameOver)
+        {checkGameOver()}
     }
 
     private fun checkCollisions() {
@@ -97,11 +101,11 @@ class Game(context: Context) : SurfaceView(context), Runnable ,SurfaceHolder.Cal
 
     private fun checkGameOver() {
         if(player.health<0){
+            jukebox.play(SFX.die)
             isGameOver=true
             if(distanceTraveled>maxDistanceTraveled){
                 editor.putInt(LONGEST_DIST,distanceTraveled)
                 editor.apply()
-                jukebox.play(SFX.die)
                 //update highScore
             }
         }
@@ -117,7 +121,7 @@ class Game(context: Context) : SurfaceView(context), Runnable ,SurfaceHolder.Cal
             entity.render(canvas, paint)
         }
         player.render(canvas,paint)
-        renderHud(canvas,paint)
+        renderHud(canvas,paintText)
         holder.unlockCanvasAndPost(canvas)
     }
 

@@ -13,8 +13,10 @@ object SFX{
     var die =0
 }
 const val MAX_STREAMS = 3
+var isFirstInitialize = true
+
 class Jukebox(private val assetManager: AssetManager) {
-    private val tag = "Jukebox"
+
     private val soundPool: SoundPool
     init {
         val attr = AudioAttributes.Builder()
@@ -25,10 +27,22 @@ class Jukebox(private val assetManager: AssetManager) {
             .setAudioAttributes(attr)
             .setMaxStreams(MAX_STREAMS)
             .build()
-        Log.d(tag, "soundpool created!")
+
+        soundPool.setOnLoadCompleteListener { _, _, _ ->
+            if(isFirstInitialize){
+                play(SFX.start)
+                isFirstInitialize = false
+            }
+        }
+
         SFX.crash = loadSound("crash.wav")
         SFX.start =loadSound("start.wav")
         SFX.die =loadSound("die.wav")
+
+
+
+
+
 
     }
 
@@ -37,7 +51,7 @@ class Jukebox(private val assetManager: AssetManager) {
             val descriptor: AssetFileDescriptor = assetManager.openFd(fileName)
             return soundPool.load(descriptor, 1)
         }catch(e: IOException){
-            Log.d(tag, "Unable to load $fileName! Check the filename, and make sure it's in the assets-folder.")
+            Log.d(TAG, "Unable to load $fileName! Check the filename, and make sure it's in the assets-folder.")
         }
         return 0
     }
@@ -49,8 +63,13 @@ class Jukebox(private val assetManager: AssetManager) {
         val loop = 0
         val playbackRate = 1.0f
         if (soundID > 0) {
+            Log.d(TAG, "soundpool play!")
             soundPool.play(soundID, leftVolume, rightVolume, priority, loop, playbackRate)
         }
+    }
+
+    companion object{
+        const val TAG = "Jukebox"
     }
 
 }
